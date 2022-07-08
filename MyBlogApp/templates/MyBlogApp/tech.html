@@ -1,0 +1,141 @@
+{% extends "MyBlogApp/baseTech.html"%}
+{% block content %}
+{% load static %}
+
+     <script src="https://apps.elfsight.com/p/platform.js"></script>
+     <div class="elfsight-app-db65a8c4-7b4b-471b-89da-f876e8695413"></div>
+	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+<aside id="colorlib-aside" role="complementary" class="js-fullheight" style="background-color:#556B2F;">
+			<div class="colorlib-footer">
+				<h3 id="colorlib-logo" class="mb-6"><a href="#" style="background-image: url({% static 'images/white.jpg' %});">&nbsp&nbsp<br/>&nbsp&nbsp<br/><br/><br/><span>&nbsp&nbsp&nbsp&nbspKizi<br/><br/>&nbsp&nbsp&nbsp&nbspTech<br/><br/></span></a></h3>
+				<div class="mb-4">
+                    <div class="dropdown">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Click Here</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton dropdown-menu-right">
+					{% if user.is_authenticated%}
+					<a class="dropdown-item" href="{% url 'MyBlogApp:MyBlogApp-welcome' %}"> Home</a>
+                    <a class="dropdown-item" href="{% url 'MyBlogApp:carpost-createcars' %}">Create Post</a>
+                    <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                 {% else %}
+					<a href="{% url 'login' %}" class="btn btn-success btn-lg">Login</a>
+						 {% endif %}
+                    </div>
+                    </div>
+					<form action="#" class="colorlib-subscribe-form">
+            <div class="form-group d-flex">
+            	<div class="icon"><span class="icon-paper-plane"></span></div>
+              <input type="text" class="form-control" placeholder="Send us a Message if any concern">
+            </div>
+          </form>
+				</div>
+				<p class="pfooter">
+					Copyright &copy; <script>document.write(new Date().getFullYear());</script>&nbspAll rights reserved <b>Kiziski</b>
+					<div class="social-menu"></br>
+          <ul>
+			  <h1><a href="#"><i class="fa fa-facebook"></i></a></h1>
+              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			  <h1><a href="#"><i class="fa fa-instagram"></i></a></h1>
+			  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			  <h5> <a href="#"><i class="fa fa-twitter"></i></a></h5>
+              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+               <h1><a href="#"><i class="fa fa-linkedin"></i></a></h1>
+              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+          </ul>
+          </div>
+
+			</div>
+		</aside> <!-- END COLORLIB-ASIDE -->
+
+		<div id="colorlib-main">
+			<section class="ftco-section ftco-no-pt ftco-no-pb">
+				<h3 class="mb-3"></h3>
+	    	<div class="container">
+
+	    		<div class="row d-flex">
+	    			<div class="col-xl-8 py-5 px-md-5">
+	    				<div class="row pt-md-4">
+			    			<div class="col-md-12">
+
+								{% for post in poststech %}
+									<div class="blog-entry ftco-animate d-md-flex">
+										 <img class="img img-2" style="width:80px;height:80px;" src="{{ post.author.profile.image.url}}">
+										<div class="text text-2 pl-md-4">
+				              <div class="meta-wrap">
+								<p class="meta">
+									<h> </h> <a style="color:Black;"class="mr-2" href="{% url 'MyBlogApp:usertech-poststech' post.author.username %}"><b>&nbsp{{post.author}}</b></a><br/>
+									<h>Posted on :&nbsp<small class="text-muted">&nbsp{{ post.date|date:"F d, Y" }}</small></h>
+                                    <a style="color:DarkGreen;" class="article-title" href="{% url 'MyBlogApp:techpost-posttech_detail' post.id %}"><h2>&nbsp<pre>{{ post.title }}</pre></h2></a>
+                                    {% if post.img %}
+                                  <img  style="width:400px;height:200px;" src="{{ post.img.url }}"></br></br>
+								  <h style="color:Black;" class="article-content">{{post.content|truncatechars:50}}</h><a href= "{% url 'MyBlogApp:techpost-posttech_detail' post.id %}">...Read More </a></br></br>
+                                  {% endif %}
+
+								  {{post.total_likestech}} likes &nbsp
+                                  <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+								  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                                  <i onclick="myFunction(this)" class="fa fa-thumbs-down"></i>&nbsp&nbsp{{post.total_unlikestech}} unLikes
+				              	</p>
+			              	  </div>
+							</div>
+							</div>
+								<hr style="width:109%;height:10px;border-width:10;background-color:#FFFAFA"></br></br></br>
+								{% endfor %}
+
+   {% if is_paginated %}
+     {% if page_obj.has_previous %}
+       <button onclick="document.location='?page=1' ">First </button>
+       <button onclick="document.location='?page={{ page_obj.previous_page_number }}' ">Previous </button>
+     {% endif %}
+
+     {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'-3' %}
+             <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+     {% endfor %}
+
+      {% if page_obj.has_next %}
+       <button onclick="document.location='?page={{page_obj.next_page_number}}' ">Next</button>
+       <button onclick="document.location='?page={{ page_obj.paginator.num_pages}}' ">Last</button></br></br></br></br>
+     {% endif %}
+
+   {% endif %}
+
+
+								</div>
+
+			    		</div><!-- END-->
+
+			    	</div>
+
+	    		</div>
+	    	</div>
+	    </section>
+		</div><!-- END COLORLIB-MAIN -->
+	</div><!-- END COLORLIB-PAGE -->
+
+  <!-- loader -->
+
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
+  <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'js/scrollax.min.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{% static 'js/google-map.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
+
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends "MyBlogApp/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+               <div class="article-metadata">
+                   <a class="mr-2" href="{% url 'MyBlogApp:user-posts' object.author.username %}">{{ object.author }}</a>
+                   <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+               </div>
+               <h2 class="article-title">{{ object.title }}</h2>
+
+
+               {% if post.img %}
+               <img src=" {{ post.img.url }}" alt="{{ post.title }}">
+               {% endif %}
+               <h2 class="article-content">{{ object.content | safe }}</h2>
+
+       {% if object.author == user %}
+                      <div>
+                        <button onclick="document.location='{% url 'MyBlogApp:post-update' object.id %}' ">Update</button>
+                        <button onclick="document.location='{% url 'MyBlogApp:post-delete' object.id %}'">Delete</button>
+                      </div>
+        {% endif %}
+
+<br/><br/>
+</form>
+</div></br></br></br>
+<h2>Comments...</h2>
+{% if not post.comments.all %}
+    No Comments Yet...<a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+    Add One</a>
+{% else %}
+<a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+    {% for comment in post.comments.all %}
+        <strong>
+             {{ comment.name }} -
+             {{ comment.timestamp }}
+        </strong>
+        <br/>
+        {{ comment.content }}
+      </br></br>
+    {% endfor %}
+{% endif %}
+<a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+
+
+
+
+
+{% endblock content %}

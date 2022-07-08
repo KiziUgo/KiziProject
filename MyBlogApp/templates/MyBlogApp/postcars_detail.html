@@ -1,0 +1,71 @@
+ {% extends "MyBlogApp/baseCars.html"%}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+               <h5><a href="{% url 'MyBlogApp:cars' %}" class="btn btn-outline-success ">Back To Cars</a></h5>
+               <div class="article-metadata">
+                   <div class="card p-1">
+                       <br>
+                       <h><br><b>Send Me a Message or Call Me on:</b></br> <i class="fa fa-envelope" aria-hidden="true">&nbsp{{ object.by.profile.phone_number }}</i></h6></b></h>
+
+
+                    </div>
+
+               </div>
+              <h2 class="article-title">{{ object.topic }}</h2>
+
+               {% if postcars.imge %}
+               <img style="width:500px;height:300px;" src=" {{ postcars.imge.url }}"  alt="{{ post.topic }}">
+               {% endif %}
+               <h2 class="article-content">{{ object.body | linebreaks  }}</h2><br>
+
+       {% if object.by == user %}
+                      <div>
+                        <button onclick="document.location='{% url 'MyBlogApp:carpost-updatecars' object.id %}' ">Update</button>
+                        <button onclick="document.location='{% url 'MyBlogApp:carpost-deletecars' object.id %}'">Delete</button>
+                      </div>
+        {% endif %}
+
+<br/><br/>
+<div>
+<form action="{% url 'MyBlogApp:likecars_postcars' postcars.pk %}" method="POST">
+    {% csrf_token %}
+   {{post.total_likescars}} Likes <button type="submit" name="postcars_id" value="{{ postcars.id }}" class="btn btn-primary btn-sm">Like</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button type="submit" name="postcars_id" formaction="{% url 'MyBlogApp:unlikecars_postcars' postcars.pk %}" value="{{ postcars.id }}" class="btn btn-primary btn-sm">UnLike</button> {{post.total_unlikescars}} unLikes
+</form>
+</div></br></br></br>
+
+ <h1>Add New Comment</h1></br></br>
+        <div class="form-group">
+        <form method = "POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy}}
+            <input type="hidden" name="entry" value="{{ postcars.pk }}">
+            <button class="btn btn-outline-info" type="submit">Post</button>
+       </form>
+        </div>
+
+<h2>Comments...</h2>
+{% if not postcars.commentsCar.all %}
+    No Comments Yet...<a href="{% url 'MyBlogApp:add_commentCars' postcars.pk %}">Add Comment</a>
+    Add One</a>
+{% else %}
+<a href="{% url 'MyBlogApp:add_commentCars' postcars.pk %}">Add Comment</a>
+    {% for comment in postcars.commentsCar.all %}
+        <strong>
+             {{ comment.name }} -
+             {{ comment.timestampCars }}
+        </strong>
+        <br/>
+        {{ comment.content }}
+      </br></br>
+    {% endfor %}
+{% endif %}
+<a href="{% url 'MyBlogApp:add_commentCars' postcars.pk %}">Add Comment</a>
+
+
+
+
+
+{% endblock content %}

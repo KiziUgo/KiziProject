@@ -1,0 +1,12 @@
+{% extends "MyBlogApp/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+   <form method = "POST" enctype="multipart/form-data">
+       <legend class="border-bottom mb-4">Post Videos and Pictures Here!</legend>
+       {% csrf_token %}
+       {{ form.as_p|crispy}}
+       {{ form.as_table}}
+       <input type="submit" value="Create" class="btn btn-outline-success">
+   </form>
+{% endblock %}
+

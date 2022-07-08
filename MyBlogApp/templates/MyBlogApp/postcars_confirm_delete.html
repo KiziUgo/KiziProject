@@ -1,0 +1,17 @@
+{% extends "MyBlogApp/baseCars.html"%}
+{% block content %}
+    <div class="content-section">
+       <form method = "POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+               <legend class="border-bottom mb-4"></legend>
+               <h4>Are you sure you want to delete this Post !!!</h4>
+           </fieldset>
+           <div class="form-group">
+               <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+               <button onclick="document.location='{% url 'MyBlogApp:carpost-postcars_detail' object.id %}'">Cancel</button>
+           </div>
+        </form>
+    </div>
+
+{% endblock %}

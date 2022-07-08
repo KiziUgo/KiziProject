@@ -1,0 +1,55 @@
+{% extends "MyBlogApp/baseTech.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+                <h5><a href="{% url 'MyBlogApp:tech' %}" class="btn btn-outline-success">Back To Tech</a></h5>
+               <div class="article-metadata">
+                   <a class="mr-2" href="{% url 'MyBlogApp:usertech-poststech' object.author.username %}">{{ object.author }}</a>
+                   <small class="text-muted">{{ object.date|date:"F d, Y" }}</small>
+               </div>
+               <h2 class="article-title">{{ object.title }}</h2>
+
+
+               {% if posttech.img %}
+               <img src=" {{ posttech.img.url }}" alt="{{ posttech.title }}">
+               {% endif %}
+               <h2 class="article-content">{{ object.content | safe }}</h2>
+
+       {% if object.author == user %}
+                      <div>
+                        <button onclick="document.location='{% url 'MyBlogApp:techpost-updatetech' object.id %}' ">Update</button>
+                        <button onclick="document.location='{% url 'MyBlogApp:techpost-deletetech' object.id %}'">Delete</button>
+                      </div>
+        {% endif %}
+
+<br/><br/>
+<div>
+<form action="{% url 'MyBlogApp:liketech_posttech' posttech.pk %}" method="POST">
+    {% csrf_token %}
+   {{post.total_likescars}} Likes <button type="submit" name="posttech_id" value="{{ posttech.id }}" class="btn btn-primary btn-sm">Like</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button type="submit" name="posttech_id" formaction="{% url 'MyBlogApp:unliketech_posttech' posttech.pk %}" value="{{ posttech.id }}" class="btn btn-primary btn-sm">UnLike</button> {{post.total_unlikestech}} unLikes
+</form>
+</div></br></br></br>
+<h2>Comments...</h2>
+{% if not posttech.commentsTech.all %}
+    No Comments Yet...<a href="{% url 'MyBlogApp:add_commentTech' posttech.pk %}">Add Comment</a>
+    Add One</a>
+{% else %}
+<a href="{% url 'MyBlogApp:add_commentTech' posttech.pk %}">Add Comment</a>
+    {% for comment in posttech.commentsTech.all %}
+        <strong>
+             {{ comment.name }} -
+             {{ comment.timestampTech }}
+        </strong>
+        <br/>
+        {{ comment.content }}
+      </br></br>
+    {% endfor %}
+{% endif %}
+<a href="{% url 'MyBlogApp:add_commentTech' posttech.pk %}">Add Comment</a>
+
+
+
+
+
+{% endblock content %}

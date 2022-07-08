@@ -1,0 +1,15 @@
+{% extends "MyBlogApp/baseCars.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<h5><a href="{% url 'MyBlogApp:cars' %}" class="btn btn-outline-success ">Back To Cars</a></h5><br>
+<h2>This is the results of your search</h2>
+{% for post in querysetc %}
+    <a href="{{ post.get_absolute_url }}">{{ post.by }}</a>
+    <a href="{{ post.get_absolute_url }}">{{ post.topic }}</a>
+    <a href="{{ post.get_absolute_url }}">{{ post.imge }}</a>
+    <br/>
+{% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends "MyBlogApp/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+        <h1>Add New Comment</h1></br></br>
+        <div class="form-group">
+        <form method = "POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy}}
+            <button class="btn btn-outline-info" type="submit">Post</button>
+       </form>
+        </div>
+{% endblock content %}

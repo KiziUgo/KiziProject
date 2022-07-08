@@ -1,0 +1,210 @@
+{% extends "MyBlogApp/base.html"%}
+{% block content %}
+{% load static %}
+
+
+	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+<aside id="colorlib-aside" role="complementary" class="js-fullheight" style="background-color:#556B2F;">
+			<div class="colorlib-footer">
+				<h3 id="colorlib-logo" class="mb-6"><a href="#" style="background-image: url({% static 'images/white.jpg' %});">&nbsp&nbsp<br/>&nbsp&nbsp<br/><br/><br/><span>&nbsp&nbsp&nbsp&nbsp<br/><br/>&nbsp&nbsp&nbsp&nbspHome<br/><br/></span></a></h3>
+				<div class="mb-4">
+                    <div class="dropdown">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Click Here</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton dropdown-menu-right">
+					{% if user.is_authenticated%}
+					<a class="dropdown-item" href="{% url 'MyBlogApp:MyBlogApp-welcome' %}"> Home</a>
+                    <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                 {% else %}
+					<a href="{% url 'login' %}" class="btn btn-success btn-lg">Login</a>
+                    <a href="{% url 'register' %}" class="btn btn-success btn-lg">Register</a>
+						 {% endif %}
+                    </div>
+                    </div>
+					<form action="#" class="colorlib-subscribe-form">
+            <div class="form-group d-flex">
+            	<div class="icon"><span class="icon-paper-plane"></span></div>
+              <input type="text" class="form-control" placeholder="Send us a Message if any concern">
+            </div>
+          </form>
+				</div>
+				<p class="pfooter">
+					Copyright &copy; <script>document.write(new Date().getFullYear());</script>&nbspAll rights reserved <b>Kiziski</b>
+					<div class="social-menu"></br>
+          <ul>
+			  <h1><a href="#"><i class="fa fa-facebook"></i></a></h1>
+              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			  <h1><a href="#"><i class="fa fa-instagram"></i></a></h1>
+			  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			  <h5> <a href="#"><i class="fa fa-twitter"></i></a></h5>
+              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+               <h1> <a href="#"><i class="fa fa-whatsapp"></i></a></h1>
+              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+          </ul>
+          </div>
+
+			</div>
+		</aside> <!-- END COLORLIB-ASIDE -->
+
+
+       <div class="copyright text-center text-md-left">
+       </div>
+     <div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-left">
+
+        <div id="" class="col-md-4 col-lg-3 sidebar-offcanvas">
+           <div class="sidebar-content">
+          </div>
+        </div>
+        <div class="col-md-8 col-lg-9 content-column">
+          <div class="small-navbar d-flex d-md-none">
+          </div>
+          <div class="grid row">
+            <div class="col-md-6 col-lg-3 grid-item">
+              <div class="box-masonry"> <a href="detail.html" title="" class="box-masonry-image with-hover-overlay"><img src="{% static 'img/portfolio/cars1.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-hover-text-header"> <a href="detail.html" class="tile-link">  </a>
+                  <h4><a href="{% url 'MyBlogApp:cars' %}">Cars for Sale</a></h4>
+                  <div class="box-masonry-desription">
+                    <p>Check out cheap deals of assorted collection of good Cars from trusted dealers across Nigeria. </p>
+                    <img src="{% static 'img/portfolio/cars.jpg' %}" alt="" class="img-fluid"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item">
+              <div class="box-masonry"> <a href="detail.html" title="" class="box-masonry-image with-hover-overlay with-hover-icon"><img src="{% static 'img/portfolio/news.png' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-text">
+                  <h4> <a href="{% url 'MyBlogApp:tech' %}">News Posts</a></h4>
+                  <div class="box-masonry-description">
+                    <p> Read Latest news updates including Breaking News, Sports, Entertainment,  </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item">
+              <h4> <a href="detail.html">Real Estate</a></h4>
+              <p>View to make a choice from some of our Exquisite Properties listed for sale in various locations in Nigeria. </p>
+              <div class="box-masonry"> <a href="detail.html" title="" class="box-masonry-image with-hover-overlay with-hover-icon"><img src="{% static 'img/portfolio/house.jpg' %}" alt="" class="img-fluid">&nbsp
+                <img src="{% static 'img/portfolio/realestate.jpg' %}" alt="" class="img-fluid"></a>&nbsp<img src="{% static 'img/portfolio/land.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-text">
+                  <h4> <a href="detail.html"></a></h4>
+                  <div class="box-masonry-description">
+                    <p></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item">
+              <div class="box-masonry">
+                <div class="box-masonry-text">
+                  <h4> <a href="detail.html">How it works</a></h4>
+                  <div class="box-masonry-description">
+                    <p>Kizi biz allows you advertise your products based on the Category. For example, Cars can only be advertised in the Car category and so on. All you have to do is </br>  1. Click on the Category you want to Post your Product </br>  1. Register </br> 2. Login </br> 3. To post your product  </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item">
+              <div class="box-masonry"> <a href="detail.html" title="" class="box-masonry-image with-hover-overlay"><img src="{% static 'img/portfolio/wescom5.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-hover-text-header"> <a href="detail.html" class="tile-link">  </a>
+                  <h4>Loan</h4>
+                  <div class="box-masonry-description">
+                    <p>Get a Loan for your business</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item"> <a href="detail.html" title="" class="box-masonry-image with-hover-overlay with-hover-icon"><img src="{% static 'img/portfolio/wescom4.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-text">
+                <div class="box-masonry-text">
+                  <h4> <a href="detail.html">Deals</a></h4>
+                  <div class="box-masonry-description">
+                    <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item">
+              <div class="box-masonry"> <a href="detail.html" title="" class="box-masonry-image with-hover-overlay with-hover-icon"><img src="{% static 'img/portfolio/wescom4.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-text">
+                  <h4> <a href="detail.html">Philanthropy</a></h4>
+                  <div class="box-masonry-description">
+                    <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item">
+              <div class="box-masonry"> <a href="detail.html" title="" class="box-masonry-image with-hover-overlay with-hover-icon"><img src="{% static 'img/portfolio/wescom6.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-text">
+                  <h4> <a href="detail.html">Study Abroad</a></h4>
+                  <div class="box-masonry-description">
+                    <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item">
+              <div class="box-masonry"> <a href="detail.html" title="" class="box-masonry-image with-hover-overlay with-hover-icon"><img src="{% static 'img/portfolio/envelope-brand.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-text">
+                  <h4> <a href="detail.html">Item with image</a></h4>
+                  <div class="box-masonry-description">
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item">
+              <div class="box-masonry"> <a href="detail.html" title="" class="box-masonry-image with-hover-overlay"><img src="{% static 'img/portfolio/trifold.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-hover-text-header"> <a href="detail.html" class="tile-link">  </a>
+                  <h4>Item with image</h4>
+                  <div class="box-masonry-description">
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item">
+              <div class="box-masonry"> <a href="detail.html" title="" class="box-masonry-image with-hover-overlay"><img src="{% static 'img/portfolio/paper-presentation.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-hover-text-header"> <a href="detail.html" class="tile-link">  </a>
+                  <h4>Item with image</h4>
+                  <div class="box-masonry-description">
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+      <!-- END COLORLIB-MAIN -->
+	</div><!-- END COLORLIB-PAGE -->
+
+  <!-- loader -->
+
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
+  <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'js/scrollax.min.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{% static 'js/google-map.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
+
+{% endblock content %}

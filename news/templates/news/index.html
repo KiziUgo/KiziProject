@@ -1,0 +1,37 @@
+{% extends "MyBlogApp/baseNews.html"%}
+{% block content %}
+{% load static %}
+
+
+<div class="jumbotron" style="color:black">
+
+    <h1 style="color:black">
+        This is the latest news
+
+    </h1>
+
+</div>
+
+
+<div class="container">
+    {% for new, des, i in mylist %}
+    <img src="{{i}}" alt="">
+    <h3>News:</h3> {{new}}
+    {{value | linebreaks}}
+    {{content}}
+
+    <h4>Description:</h4> {{des}}
+    {{value | linebreaks}}
+
+
+
+    {% endfor %}
+
+
+
+
+</div>
+
+
+
+{% endblock content %}
